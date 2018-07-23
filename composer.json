@@ -23,7 +23,9 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Custon\\": "libs/Custon/",
+            "Gatekeeper\\": "libs/Custon/Gatekeeper/"
         }
     },
     "autoload-dev": {

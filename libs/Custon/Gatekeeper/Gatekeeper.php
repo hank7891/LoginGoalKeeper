@@ -31,6 +31,25 @@ class Gatekeeper
     }
 
     /**
+     * 取得驗證碼 TODO 待實作
+     * @return false|string
+     */
+    public function getCode()
+    {
+        return date('mdH');
+    }
+
+    /**
+     * 建立帳號對應 唯一金耀
+     *
+     * @return int
+     */
+    public function createSecret()
+    {
+        return 12345;
+    }
+
+    /**
      * 檢測綁定號碼格式
      *
      * @param $testedNumber

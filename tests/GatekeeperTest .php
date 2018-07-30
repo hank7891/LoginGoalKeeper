@@ -41,12 +41,14 @@ class GatekeeperTest extends \PHPUnit\Framework\TestCase
 
     /**
      * 測試 建立帳號 Secret(密碼值)
-     * TODO 待實作
+     * 產生 14 碼
      */
-    public function testCreateSecreteateSecret()
+    public function testCreateSecret()
     {
         $gateKeeper = $this->gateKeeper;
-        $this->assertEquals(12345, $gateKeeper->createSecret());
+        $secret = $gateKeeper->createSecret();
+
+        $this->assertEquals(14, strlen($secret));
     }
 
 }

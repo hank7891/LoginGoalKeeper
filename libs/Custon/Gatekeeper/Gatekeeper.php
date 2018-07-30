@@ -41,12 +41,27 @@ class Gatekeeper
 
     /**
      * 建立帳號對應 唯一金耀
+     * 建立隨機 4 碼 + 綁定碼(手機號碼)組成 Secret
      *
      * @return int
      */
     public function createSecret()
     {
-        return 12345;
+        $secret = null;
+
+        $randomIntAry = preg_split('//', random_int('0000', '9999'), -1, PREG_SPLIT_NO_EMPTY);
+
+        $bindingNumberAry = preg_split('//', $this->bindingNumber, -1, PREG_SPLIT_NO_EMPTY);
+        krsort($bindingNumberAry);
+
+        $count = 0;
+        foreach ($bindingNumberAry as $value) {
+            $randomInt = (isset($randomIntAry[$count])) ? $randomIntAry[$count] : '';
+            $secret .= $value . $randomInt;
+            $count ++;
+        }
+
+        return $secret;
     }
 
     /**

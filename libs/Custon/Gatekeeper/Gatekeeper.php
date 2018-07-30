@@ -11,6 +11,7 @@ class Gatekeeper
      * @var
      */
     protected $bindingNumber;
+    protected $secret;
 
     public function __construct($bindingNumber)
     {
@@ -19,6 +20,45 @@ class Gatekeeper
         }
 
         $this->bindingNumber = $bindingNumber;
+    }
+
+    /**
+     * 輸入帳號唯一金鑰
+     *
+     * @param $secret
+     *
+     * @throws Exception
+     */
+    public function setSecret($secret)
+    {
+        if (!$this->checkSetSecret($secret)) {
+            throw new Exception("綁定金耀設置錯誤", 1);
+        }
+
+        $this->secret = $secret;
+    }
+
+    /**
+     * 取得帳號唯一金鑰
+     *
+     * @return mixed
+     */
+    public function getSecret()
+    {
+        return $this->secret;
+    }
+
+
+    /**
+     * 確認輸入帳號金鑰正確性
+     *
+     * @param $secret
+     *
+     * @return bool
+     */
+    protected function checkSetSecret($secret)
+    {
+        return true;
     }
 
     /**
@@ -40,7 +80,7 @@ class Gatekeeper
     }
 
     /**
-     * 建立帳號對應 唯一金耀
+     * 建立新的帳號對應 唯一金耀
      * 建立隨機 4 碼 + 綁定碼(手機號碼)組成 Secret
      *
      * @return int

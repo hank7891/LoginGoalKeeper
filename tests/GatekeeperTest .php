@@ -12,27 +12,26 @@ class GatekeeperTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * 測試 輸入帳號唯一金鑰
-     * TODO 待實作
+     * 測試 取得 輸入(setSecret)的帳號唯一金鑰
      */
     public function testGetSecret()
     {
         $gateKeeper = $this->gateKeeper;
-        $gateKeeper->setSecret('1234567890');
+        $gateKeeper->setSecret('21814151837890');
 
-        $this->assertEquals('1234567890', $gateKeeper->getSecret());
+        $this->assertEquals('21814151837890', $gateKeeper->getSecret());
     }
 
     /**
      * 測試 輸入帳號唯一金鑰
-     * TODO 待實作
+     * 輸入金耀會檢測 金鑰格式 是否符合綁定號碼
      */
     public function testSetSecret()
     {
         $gateKeeper = $this->gateKeeper;
-        $gateKeeper->setSecret('1234567890');
+        $gateKeeper->setSecret('21814151837890');
 
-        $this->assertEquals('1234567890', $gateKeeper->getSecret());
+        $this->assertEquals('21814151837890', $gateKeeper->getSecret());
     }
 
     /**

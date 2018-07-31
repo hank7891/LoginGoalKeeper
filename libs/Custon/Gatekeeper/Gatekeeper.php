@@ -13,6 +13,8 @@ class Gatekeeper
     protected $bindingNumber;
     protected $secret;
 
+    const SECRET_LENGTH = 14;
+
     public function __construct($bindingNumber)
     {
         if (!self::checkBindingFormat($bindingNumber)) {
@@ -58,6 +60,54 @@ class Gatekeeper
      */
     protected function checkSetSecret($secret)
     {
+        if (!$this->chkSecretFormat($secret)) {
+            return false;
+        }
+
+        if (!$this->isBindingNumberSecret($secret)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 確認金鑰所屬號碼
+     *
+     * @param $secret
+     *
+     * @return bool
+     */
+    protected function isBindingNumberSecret($secret)
+    {
+        $secretAry = preg_split('//', $secret, -1, PREG_SPLIT_NO_EMPTY);
+        unset($secretAry[1]);
+        unset($secretAry[3]);
+        unset($secretAry[5]);
+        unset($secretAry[7]);
+        krsort($secretAry);
+
+        if ($this->bindingNumber != implode('', $secretAry)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 確認金鑰格式
+     *
+     * @param $secret
+     *
+     * @return bool
+     */
+    protected function chkSecretFormat($secret)
+    {
+        $format = '/\d{' . self::SECRET_LENGTH .  '}$/';
+        if (!preg_match($format, $secret)) {
+            return false;
+        }
+
         return true;
     }
 

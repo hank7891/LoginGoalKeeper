@@ -8,8 +8,8 @@
 4. 驗證碼可由軟體(APP)/Mail/簡訊 取得。
 
 # 系統環境
-1. PHP7
-2. Laravel 5.6
+1. PHP 7.4
+2. Laravel 8
 
 #### 相似系統
 Google Authenticator
